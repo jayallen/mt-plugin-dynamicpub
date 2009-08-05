@@ -1,0 +1,41 @@
+## %%%%%%% If you edit this file, please do not edit below this line %%%%%%%
+## %%%%%%% Movable Type generated this part; don't remove this line! %%%%%%%
+# Disable fancy indexes, so mt-view.cgi gets a chance...
+Options -Indexes +SymLinksIfOwnerMatch
+  <IfModule mod_rewrite.c>
+  # The mod_rewrite solution is the preferred way to invoke
+  # dynamic pages, because of its flexibility.
+
+  # Add mt-view.cgi to the list of DirectoryIndex options, listing it last,
+  # so it is invoked only if the common choices aren't present...
+  <IfModule mod_dir.c>
+    DirectoryIndex index.php index.html index.htm default.htm default.html default.asp /mt/plugins/DynamicPub/mt-view.cgi
+  </IfModule>
+
+  RewriteEngine on
+
+  # don't serve mt-view.cgi if the request is for a real directory
+  # (allows the DirectoryIndex lookup to function)
+  RewriteCond %{REQUEST_FILENAME} !-d
+
+  # don't serve mt-view.cgi if the request is for a real file
+  # (allows the actual file to be served)
+  RewriteCond %{REQUEST_FILENAME} !-f
+  # anything else is handed to mt-view.cgi for resolution
+  RewriteRule ^(.*)$ /mt/plugins/DynamicPub/mt-view.cgi [L,QSA]
+</IfModule>
+
+<IfModule !mod_rewrite.c>
+  # if mod_rewrite is unavailable, we forward any missing page
+  # or unresolved directory index requests to mtview
+  # if mt-view.cgi can resolve the request, it returns a 200
+  # result code which prevents any 4xx error code from going
+  # to the server's access logs. However, an error will be
+  # reported in the error log file. If this is your only choice,
+  # and you want to suppress these messages, adding a "LogLevel crit"
+  # directive within your VirtualHost or root configuration for
+  # Apache will turn them off.
+  ErrorDocument 404 /mt/plugins/DynamicPub/mt-view.cgi
+  ErrorDocument 403 /mt/plugins/DynamicPub/mt-view.cgi
+</IfModule>
+## ******* Movable Type generated this part; don't remove this line! *******
