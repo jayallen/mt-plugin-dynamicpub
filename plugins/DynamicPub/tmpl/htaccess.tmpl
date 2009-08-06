@@ -9,7 +9,7 @@ Options -Indexes +SymLinksIfOwnerMatch
   # Add mt-view.cgi to the list of DirectoryIndex options, listing it last,
   # so it is invoked only if the common choices aren't present...
   <IfModule mod_dir.c>
-    DirectoryIndex index.php index.html index.htm default.htm default.html default.asp /mt/plugins/DynamicPub/mt-view.cgi
+    DirectoryIndex index.php index.html index.htm default.htm default.html default.asp <$mt:CGIRelativeURL>plugins/DynamicPub/mt-view.cgi
   </IfModule>
 
   RewriteEngine on
@@ -22,7 +22,7 @@ Options -Indexes +SymLinksIfOwnerMatch
   # (allows the actual file to be served)
   RewriteCond %{REQUEST_FILENAME} !-f
   # anything else is handed to mt-view.cgi for resolution
-  RewriteRule ^(.*)$ /mt/plugins/DynamicPub/mt-view.cgi [L,QSA]
+  RewriteRule ^(.*)$ <$mt:CGIRelativeURL>plugins/DynamicPub/mt-view.cgi [L,QSA]
 </IfModule>
 
 <IfModule !mod_rewrite.c>
@@ -35,7 +35,7 @@ Options -Indexes +SymLinksIfOwnerMatch
   # and you want to suppress these messages, adding a "LogLevel crit"
   # directive within your VirtualHost or root configuration for
   # Apache will turn them off.
-  ErrorDocument 404 /mt/plugins/DynamicPub/mt-view.cgi
-  ErrorDocument 403 /mt/plugins/DynamicPub/mt-view.cgi
+  ErrorDocument 404 <$mt:CGIRelativeURL>plugins/DynamicPub/mt-view.cgi
+  ErrorDocument 403 <$mt:CGIRelativeURL>plugins/DynamicPub/mt-view.cgi
 </IfModule>
 ## ******* Movable Type generated this part; don't remove this line! *******

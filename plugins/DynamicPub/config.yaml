@@ -2,17 +2,12 @@ name: Dynamic Publishing (perl-based)
 version: 1.0
 id: DynamicPub
 key: DynamicPub
-description: A plugin that allows dynamic perl publishing
+description: A plugin that enables dynamic perl-based publishing in Melody and Movable Type
 author_name: Jay Allen
 author_link: http://endevver.com/
 
 # callbacks:
-#     MT::App::CMS::init_request: $Pager::Pager::init_request
-# 
-# tags:
-#     function:
-#         DumpVar: $Pager::MT::Pager::Tags::_hdlr_dump_var
-#         StashDump: $Pager::MT::Pager::Tags::_hdlr_stash_dump
+#     MT::App::CMS::init_app: $DynamicPub::DynamicPub::Plugin::init_app
 
 applications:
     view:

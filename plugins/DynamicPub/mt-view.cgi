@@ -9,6 +9,7 @@
 use strict;
 use lib $ENV{MT_HOME} ? "$ENV{MT_HOME}/lib" : '../../lib';
 use lib $ENV{MT_HOME} ? "$ENV{MT_HOME}/extlib" : '../../extlib';
+use lib $ENV{MT_HOME} ? "$ENV{MT_HOME}/plugins/DynamicPub/lib" : '../../plugins/DynamicPub/lib';
 # print "Content-type: text/plain\n\n";
 # print join(", ", @INC);
 use MT::Bootstrap App => 'MT::App::Viewer';
